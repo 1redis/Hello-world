@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图切换</title>
+</head>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<body>
+    <div id="mask">
+        <div class="center">
+            <h2 class="title">
+                <img src="images/logo.jpg" alt="">
+                王者荣耀
+            </h2>
+            <!--图片-->
+            <img :src="imgArr[index]" alt="">
+            <!--左箭头 这里v-show可以替换成v-if，但性能消耗较大-->
+            <a href="javascript:void(0)" class="left" v-show="index!=0" @click="prev">
+                <input type="button" value="上一页">
+            </a>
+            <!--右箭头-->
+            <a href="javascript:void(0)" class="right" v-show="index<imgArr.length-1" @click="next">
+                <input type="button" value="下一页">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue ({
+            el:"#mask",
+            data:{
+                imgArr: [
+                    "images/公孙离.jpg",
+                    "images/宫本.jpg",
+                    "images/李白.jpg",
+                    "images/李白01.jpg",
+                    "images/露娜.jpg",
+                    "images/u=688404952,3264387635&fm=27&gp=0.jpg"
+                ],
+                index:0
+            },
+            methods:{
+                prev:function(){
+                    this.index--;
+                },
+                next:function(){
+                    this.index++;
+                },
+            }
+        })
+    </script>
+</body>
+</html>
